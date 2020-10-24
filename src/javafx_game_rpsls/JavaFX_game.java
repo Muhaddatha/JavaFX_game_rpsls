@@ -39,15 +39,15 @@ public class JavaFX_game extends Application {
     //Creating images
     private Image rockImage = new Image("javafx_game_rpsls/images/rock.jpg");
     ImageView rockView = new ImageView(rockImage);
-    private Image paperImage = new Image("javafx_game_rpsls/paper.jpg");
+    private Image paperImage = new Image("javafx_game_rpsls/images/paper.jpg");
     ImageView paperView = new ImageView(paperImage);
-    private Image scissorsImage = new Image("javafx_game_rpsls/scissors.jpg");
+    private Image scissorsImage = new Image("javafx_game_rpsls/images/scissors.jpg");
     ImageView scissorsView = new ImageView(scissorsImage);
-    private Image lizardImage = new Image("javafx_game_rpsls/lizard.jpg");
+    private Image lizardImage = new Image("javafx_game_rpsls/images/lizard.jpg");
     ImageView lizardView = new ImageView(lizardImage);
-    private Image spockImage = new Image("javafx_game_rpsls/spock.jpg");
+    private Image spockImage = new Image("javafx_game_rpsls/images/spock.jpg");
     ImageView spockView = new ImageView(spockImage);
- 
+
     
     
     
@@ -76,8 +76,22 @@ public class JavaFX_game extends Application {
         computerPickLabel.setAlignment(Pos.CENTER);
         playerPickLabel.setAlignment(Pos.CENTER);
         
-        rockButton.setGraphic(rockView);
+        rockView.setFitHeight(80);
+        rockView.setPreserveRatio(true);
+        paperView.setFitHeight(80);
+        paperView.setPreserveRatio(true);
+        scissorsView.setFitHeight(80);
+        scissorsView.setPreserveRatio(true);
+        lizardView.setFitHeight(80);
+        lizardView.setPreserveRatio(true);
+        spockView.setFitHeight(80);
+        spockView.setPreserveRatio(true);
         
+        rockButton.setGraphic(rockView);
+        paperButton.setGraphic(paperView);
+        scissorsButton.setGraphic(scissorsView);
+        lizardButton.setGraphic(lizardView);
+        spockButton.setGraphic(spockView);
         
         Scene scene = new Scene(gridPane, 400, 500);
         stage.setTitle("Rock, paper, scissors, lizard, spock game");
