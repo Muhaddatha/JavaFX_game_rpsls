@@ -39,19 +39,19 @@ public class JavaFX_game extends Application {
     //Creating images
     private Image rockImage = new Image("javafx_game_rpsls/images/rock.jpg");
     ImageView rockView = new ImageView(rockImage);
+    private Image paperImage = new Image("javafx_game_rpsls/paper.jpg");
+    ImageView paperView = new ImageView(paperImage);
+    private Image scissorsImage = new Image("javafx_game_rpsls/scissors.jpg");
+    ImageView scissorsView = new ImageView(scissorsImage);
+    private Image lizardImage = new Image("javafx_game_rpsls/lizard.jpg");
+    ImageView lizardView = new ImageView(lizardImage);
+    private Image spockImage = new Image("javafx_game_rpsls/spock.jpg");
+    ImageView spockView = new ImageView(spockImage);
+ 
     
     
-//    private Image paperImage = new Image("javafx_game_rpsls/rock.jpg");
-//    ImageView paperView = new ImageView(paperImage);
-//    private Image scissorsImage = new Image("images/paper.jpg");
-//    ImageView scissorsView = new ImageView(scissorsImage);
-//    private Image lizardImage = new Image("images/scissors.jpg");
-//    ImageView lizardView = new ImageView(lizardImage);
-//    private Image spockImage = new Image("images/spock.jpg");
-//    ImageView spockView = new ImageView(spockImage);
     
     Button rockButton = new Button("Rock");
-    
     Button paperButton = new Button("Paper");
     Button scissorsButton = new Button("Scissors");
     Button lizardButton = new Button("Lizard");

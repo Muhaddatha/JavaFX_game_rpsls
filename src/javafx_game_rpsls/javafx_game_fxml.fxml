@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx_game_rpsls.Javafx_game_fxmlController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="javafx_game_rpsls.Javafx_game_fxmlController">
     <stylesheets>
-        <URL value="@javafx_game_fxml.css"/>
+        <URL value="@javafx_game_fxml.css" />
     </stylesheets>
+   <children>
+      <CheckBox layoutX="90.0" layoutY="101.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="131.0" text="CheckBox" />
+   </children>
 </AnchorPane>
