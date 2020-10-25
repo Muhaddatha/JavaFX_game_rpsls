@@ -7,7 +7,6 @@ https://www.tutorialspoint.com/javafx/javafx_layout_panes.htm
  */
 package javafx_game_rpsls;
 
-import java.io.FileInputStream;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,13 +14,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.shape.Circle;
+
 
 
 /**
@@ -33,28 +30,40 @@ import javafx.scene.shape.Circle;
  */
 public class JavaFX_game extends Application implements EventHandler<ActionEvent>{
     
-    int imageHeight = 20;
+    int imageHeight = 80;
     int buttonSize = 20;
     boolean debugging = true;
     static int computerPlay;
     static int userPlay;
     
+    String[] pathsToImages = {
+        "javafx_game_rpsls/images/rock.jpg", // 0 = rock
+        "javafx_game_rpsls/images/paper.jpg", // 1 = paper
+        "javafx_game_rpsls/images/scissors.jpg", // 2 = scissors
+        "javafx_game_rpsls/images/lizard.jpg", // 3 =lizard
+        "javafx_game_rpsls/images/spock.jpg" // 4 = spock
+    };
     
-    private Label computerPickLabel = new Label("Computer");
-    private Label playerPickLabel = new Label("Player");
-    private Label gameResult = new Label();
-    private Label selectOptionLabel = new Label("Please selct your weapon of choice");
+    private final Label computerPickLabel = new Label("Computer");
+//    private final Image rockImageTest = new Image("javafx_game_rpsls/images/rock.jpg");
+    private final ImageView computerPickImageView = new ImageView();
+    
+    private final Label playerPickLabel = new Label("Player");
+    private final ImageView userPickImageView = new ImageView();
+    
+    private final Label gameResult = new Label();
+    private final Label selectOptionLabel = new Label("Please select your weapon of choice");
     
     //Creating images
-    private Image rockImage = new Image("javafx_game_rpsls/images/rock.jpg");
+    private final Image rockImage = new Image(pathsToImages[0]);
     ImageView rockView = new ImageView(rockImage);
-    private Image paperImage = new Image("javafx_game_rpsls/images/paper.jpg");
+    private final Image paperImage = new Image(pathsToImages[1]);
     ImageView paperView = new ImageView(paperImage);
-    private Image scissorsImage = new Image("javafx_game_rpsls/images/scissors.jpg");
+    private final Image scissorsImage = new Image(pathsToImages[2]);
     ImageView scissorsView = new ImageView(scissorsImage);
-    private Image lizardImage = new Image("javafx_game_rpsls/images/lizard.jpg");
+    private final Image lizardImage = new Image(pathsToImages[3]);
     ImageView lizardView = new ImageView(lizardImage);
-    private Image spockImage = new Image("javafx_game_rpsls/images/spock.jpg");
+    private final Image spockImage = new Image(pathsToImages[4]);
     ImageView spockView = new ImageView(spockImage);
 
     
@@ -76,27 +85,37 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         //Create UI
         GridPane gridPane = new GridPane();
         gridPane.add(computerPickLabel, 0, 0);
+        gridPane.add(computerPickImageView,1 ,0 );
+        gridPane.add(userPickImageView,1, 2 );
         gridPane.add(playerPickLabel, 0, 2);
-        gridPane.add(rockButton, 0, 5);
-        gridPane.add(paperButton, 1, 5);
-        gridPane.add(scissorsButton, 2, 5);
-        gridPane.add(lizardButton, 3, 5);
-        gridPane.add(spockButton, 4, 5);
-        gridPane.add(gameResult, 3, 0);
+        gridPane.add(rockButton, 0, 6);
+        gridPane.add(paperButton, 1, 6);
+        gridPane.add(scissorsButton, 2, 6);
+        gridPane.add(lizardButton, 3, 6);
+        gridPane.add(spockButton, 4, 6);
+        gridPane.add(gameResult, 3, (int) 1.5);
+        gridPane.add(selectOptionLabel, 0, 4);
         computerPickLabel.setAlignment(Pos.CENTER);
         playerPickLabel.setAlignment(Pos.CENTER);
         
-        rockView.setFitHeight(80);
+        rockView.setFitHeight(imageHeight);
         rockView.setPreserveRatio(true);
-        paperView.setFitHeight(80);
+        paperView.setFitHeight(imageHeight);
         paperView.setPreserveRatio(true);
-        scissorsView.setFitHeight(80);
+        scissorsView.setFitHeight(imageHeight);
         scissorsView.setPreserveRatio(true);
-        lizardView.setFitHeight(80);
+        lizardView.setFitHeight(imageHeight);
         lizardView.setPreserveRatio(true);
-        spockView.setFitHeight(80);
+        spockView.setFitHeight(imageHeight);
         spockView.setPreserveRatio(true);
         
+        //test
+        computerPickImageView.setFitHeight(imageHeight - 20);
+        computerPickImageView.setPreserveRatio(true);
+        
+        userPickImageView.setFitHeight(imageHeight - 20);
+        userPickImageView.setPreserveRatio(true);
+         
         
         rockButton.setGraphic(rockView);
         paperButton.setGraphic(paperView);
@@ -211,6 +230,8 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         
         //If the first word of the gameResult matches the user's pick, he/she wins.
         gameStatus = play();
+        computerPickImageView.setImage(new Image(pathsToImages[computerPlay]));
+        userPickImageView.setImage(new Image(pathsToImages[userPlay]));
         
         //If the user picked the first weapon, he/she wins the round
         String[] arrayOfGamePlay = gameStatus.split(" ", 2);
