@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import java.util.Random;
 
 /**
  * Name: Muhaddatha Abdulghani
@@ -96,10 +97,78 @@ public class JavaFX_game extends Application {
         Scene scene = new Scene(gridPane, 400, 500);
         stage.setTitle("Rock, paper, scissors, lizard, spock game");
         stage.setScene(scene);
-        stage.show();
+        do{
+            stage.show();
+            
+            
+        }while(true);
+        
+        
+        
+        
     }
     
+    //precondition: userPlay is a number between 0 and 4, inclusive
+    //postcondition:
+    //Description:
+    public String play(int userPlay, boolean userWinStatus){
+        
+        String[] playOptions = new String[5];
+        playOptions[0] = "Rock";
+        playOptions[1] = "Paper";
+        playOptions[2] = "Scissors";
+        playOptions[3] = "Lizard";
+        playOptions[4] = "Spock";
+        
+        int computerPlay = (int)(Math.random() * 5);
+        
+        //array of possible game plays. The first index represents the user's 
+        //play and the second index represents
+        //the computer's random play
+        //The matrix summarizes the interaction between the
+        //user and computer picks by looking up the index in the 
+        //gameResultText array
+        int[][] gameResult = {
+            {0, 1, 3, 4, 7},
+            {1, 0, 5, 9, 2},
+            {3, 5, 0, 6, 8},
+            {4, 9, 6, 0, 10},
+            {7, 2, 8, 10, 0},
+            
+        };
+        
+        
+        String[] gameResultText = new String[11];
+        gameResultText[0] = "Tie";
+        gameResultText[1] = "Paper covers Rock";
+        gameResultText[2] = "Paper disproves Spock";
+        gameResultText[3] = "Rock crushes Scissors";
+        gameResultText[4] = "Rock crushes Lizard";
+        gameResultText[5] = "Scissors cuts paper";
+        gameResultText[6] = "Scissors decapitates Lizard";
+        gameResultText[7] = "Spock vaporizes Rock";
+        gameResultText[8] = "Spock smashes Scissors";
+        gameResultText[9] = "Lizard eats Paper";
+        gameResultText[10] = "Lizard poisons Spock";
+        
     
+        //Splitting the result of the game into array to find the name of the first weapon
+        //The first weapon in an index in the gameResultText is the dominant weapon
+        //So if the winner has selected this item, they win
+        //The winning or losing status of the user is communicated with
+        //the userWinStatus variable.
+        String gamePlay = gameResultText[gameResult[userPlay][computerPlay]];
+        String[] arrayOfGamePlay = gamePlay.split(" ", 2);
+        
+        
+        //If the user picked the first weapon, he/she wins the round
+        if(playOptions[userPlay] == arrayOfGamePlay[0]){
+            userWinStatus = true;
+        }
+        
+        return gamePlay;
+        
+    }
     
     public static void main(String[] args){
         launch(args);
