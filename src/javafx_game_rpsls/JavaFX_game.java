@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import java.util.Random;
 
 
 
@@ -160,7 +161,9 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         playOptions[3] = "Lizard";
         playOptions[4] = "Spock";
         
-        computerPlay = (int)(Math.random() * 5);
+        Random randomComputerPick = new Random();
+        computerPlay = randomComputerPick.nextInt(5);
+        
         
         
         //array of possible game plays. The first index represents the user's 
