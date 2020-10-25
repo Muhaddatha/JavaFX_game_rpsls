@@ -68,6 +68,7 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
     
     
     
+    
 
     @Override//start method from the Application class needs to be overridden
     public void start(Stage stage) throws Exception {
@@ -96,9 +97,8 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         spockView.setFitHeight(80);
         spockView.setPreserveRatio(true);
         
-        rockButton.setShape(new Circle(1.5));
-        rockButton.setGraphic(rockView);
         
+        rockButton.setGraphic(rockView);
         paperButton.setGraphic(paperView);
         scissorsButton.setGraphic(scissorsView);
         lizardButton.setGraphic(lizardView);
