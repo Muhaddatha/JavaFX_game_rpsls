@@ -19,6 +19,10 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import java.util.Random;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.shape.Circle;
+
 
 /**
  * Name: Muhaddatha Abdulghani
@@ -27,10 +31,14 @@ import java.util.Random;
  * Description:
  * 
  */
-public class JavaFX_game extends Application {
+public class JavaFX_game extends Application implements EventHandler<ActionEvent>{
     
     int imageHeight = 20;
     int buttonSize = 20;
+    boolean debugging = true;
+    static int computerPlay;
+    static int userPlay;
+    
     
     private Label computerPickLabel = new Label("Computer");
     private Label playerPickLabel = new Label("Player");
@@ -73,7 +81,7 @@ public class JavaFX_game extends Application {
         gridPane.add(scissorsButton, 2, 5);
         gridPane.add(lizardButton, 3, 5);
         gridPane.add(spockButton, 4, 5);
-        
+        gridPane.add(gameResult, 3, 0);
         computerPickLabel.setAlignment(Pos.CENTER);
         playerPickLabel.setAlignment(Pos.CENTER);
         
@@ -88,30 +96,32 @@ public class JavaFX_game extends Application {
         spockView.setFitHeight(80);
         spockView.setPreserveRatio(true);
         
+        rockButton.setShape(new Circle(1.5));
         rockButton.setGraphic(rockView);
+        
         paperButton.setGraphic(paperView);
         scissorsButton.setGraphic(scissorsView);
         lizardButton.setGraphic(lizardView);
         spockButton.setGraphic(spockView);
         
+        rockButton.setOnAction(this);
+        paperButton.setOnAction(this);
+        scissorsButton.setOnAction(this);
+        lizardButton.setOnAction(this);
+        spockButton.setOnAction(this);
+        
+        
+        
         Scene scene = new Scene(gridPane, 400, 500);
-        stage.setTitle("Rock, paper, scissors, lizard, spock game");
+        stage.setTitle("Rock, Paper, Scissors, Lizard, Spock game");
         stage.setScene(scene);
-        do{
-            stage.show();
-            
-            
-        }while(true);
-        
-        
-        
-        
+        stage.show();
     }
     
     //precondition: userPlay is a number between 0 and 4, inclusive
     //postcondition:
     //Description:
-    public String play(int userPlay, boolean userWinStatus){
+    public String play(){
         
         String[] playOptions = new String[5];
         playOptions[0] = "Rock";
@@ -120,7 +130,8 @@ public class JavaFX_game extends Application {
         playOptions[3] = "Lizard";
         playOptions[4] = "Spock";
         
-        int computerPlay = (int)(Math.random() * 5);
+        computerPlay = (int)(Math.random() * 5);
+        
         
         //array of possible game plays. The first index represents the user's 
         //play and the second index represents
@@ -139,7 +150,7 @@ public class JavaFX_game extends Application {
         
         
         String[] gameResultText = new String[11];
-        gameResultText[0] = "Tie";
+        gameResultText[0] = "Tie!";
         gameResultText[1] = "Paper covers Rock";
         gameResultText[2] = "Paper disproves Spock";
         gameResultText[3] = "Rock crushes Scissors";
@@ -158,17 +169,76 @@ public class JavaFX_game extends Application {
         //The winning or losing status of the user is communicated with
         //the userWinStatus variable.
         String gamePlay = gameResultText[gameResult[userPlay][computerPlay]];
-        String[] arrayOfGamePlay = gamePlay.split(" ", 2);
-        
-        
-        //If the user picked the first weapon, he/she wins the round
-        if(playOptions[userPlay] == arrayOfGamePlay[0]){
-            userWinStatus = true;
-        }
-        
+//       
         return gamePlay;
         
     }
+    
+    @Override
+    public void handle(ActionEvent event){
+        
+        String[] playOptionsCopy = new String[5];
+        playOptionsCopy[0] = "Rock";
+        playOptionsCopy[1] = "Paper";
+        playOptionsCopy[2] = "Scissors";
+        playOptionsCopy[3] = "Lizard";
+        playOptionsCopy[4] = "Spock";
+        
+        int computerOption;
+        
+        String gameStatus = " ";
+        
+        
+        if(event.getSource() == rockButton){
+            userPlay = 0;
+        }
+        else if(event.getSource() == paperButton){
+            userPlay = 1;
+        }
+        else if(event.getSource() == scissorsButton){
+            userPlay = 2;
+        }
+        else if(event.getSource() == lizardButton){
+            userPlay = 3;
+        }
+        else if(event.getSource() == spockButton){
+            userPlay = 4;
+        }
+        
+        
+        
+        //set computer pick label graphic, user pick label graphic and game result
+        
+        //If the first word of the gameResult matches the user's pick, he/she wins.
+        gameStatus = play();
+        
+        //If the user picked the first weapon, he/she wins the round
+        String[] arrayOfGamePlay = gameStatus.split(" ", 2);
+        
+        if(debugging){
+            System.out.println("The first word in gameStatus is: " + arrayOfGamePlay[0]);
+        }
+        if("Tie!".equals(gameStatus)){
+            if(debugging){
+                System.out.println("There is a tie");
+            }
+            gameResult.setText(gameStatus);
+        }
+        else if(playOptionsCopy[userPlay] == null ? arrayOfGamePlay[0] == null : playOptionsCopy[userPlay].equals(arrayOfGamePlay[0])){
+            gameResult.setText(gameStatus + "\n You win! ");
+        }
+        else{
+            gameResult.setText(gameStatus + "\n You lose! ");
+        }
+        
+        if(debugging){
+                System.out.println("The user played " + playOptionsCopy[userPlay] + 
+                        " and the computer played " + playOptionsCopy[computerPlay] + 
+                        "\n The game result is " + gameStatus);
+            }
+        
+    }
+    
     
     public static void main(String[] args){
         launch(args);
