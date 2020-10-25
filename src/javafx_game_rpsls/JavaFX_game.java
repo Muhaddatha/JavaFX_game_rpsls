@@ -25,12 +25,12 @@ import javafx.event.EventHandler;
  * Name: Muhaddatha Abdulghani
  * Professor: Dr. John Baugh
  * Class: Java programming (CIS 296)
- * Description:
+ * Description: Rock, Paper, Scissors, Lizard, and Spock GUI game.
  * 
  */
 public class JavaFX_game extends Application implements EventHandler<ActionEvent>{
     
-    int imageHeight = 80;
+    int imageHeight = 50;
     int buttonSize = 20;
     boolean debugging = true;
     static int computerPlay;
@@ -52,7 +52,7 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
     private final ImageView userPickImageView = new ImageView();
     
     private final Label gameResult = new Label();
-    private final Label selectOptionLabel = new Label("Please select your weapon of choice");
+    private final Label selectOptionLabel = new Label("Please select your\nweapon of choice\nbelow: ");
     
     //Creating images
     private final Image rockImage = new Image(pathsToImages[0]);
@@ -110,10 +110,10 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         spockView.setPreserveRatio(true);
         
         //test
-        computerPickImageView.setFitHeight(imageHeight - 20);
+        computerPickImageView.setFitHeight(imageHeight);
         computerPickImageView.setPreserveRatio(true);
         
-        userPickImageView.setFitHeight(imageHeight - 20);
+        userPickImageView.setFitHeight(imageHeight);
         userPickImageView.setPreserveRatio(true);
          
         
@@ -131,7 +131,7 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         
         
         
-        Scene scene = new Scene(gridPane, 400, 500);
+        Scene scene = new Scene(gridPane, 700, 400);
         stage.setTitle("Rock, Paper, Scissors, Lizard, Spock game");
         stage.setScene(scene);
         stage.show();
