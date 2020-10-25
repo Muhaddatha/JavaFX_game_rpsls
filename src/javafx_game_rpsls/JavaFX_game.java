@@ -18,6 +18,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 
 
 
@@ -35,6 +37,7 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
     boolean debugging = true;
     static int computerPlay;
     static int userPlay;
+    static int labelFontSize = 18;
     
     String[] pathsToImages = {
         "javafx_game_rpsls/images/rock.jpg", // 0 = rock
@@ -97,6 +100,14 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         gridPane.add(selectOptionLabel, 0, 4);
         computerPickLabel.setAlignment(Pos.CENTER);
         playerPickLabel.setAlignment(Pos.CENTER);
+        
+        
+        //seeting fonts
+        computerPickLabel.setFont(new Font("Ariel", labelFontSize));
+        playerPickLabel.setFont(new Font("Ariel", labelFontSize));
+        selectOptionLabel.setFont(Font.font("Ariel", FontPosture.ITALIC, labelFontSize));
+        gameResult.setFont(new Font("Ariel", labelFontSize));
+        
         
         rockView.setFitHeight(imageHeight);
         rockView.setPreserveRatio(true);
