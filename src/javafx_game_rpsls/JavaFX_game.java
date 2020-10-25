@@ -49,7 +49,6 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
     };
     
     private final Label computerPickLabel = new Label("Computer");
-//    private final Image rockImageTest = new Image("javafx_game_rpsls/images/rock.jpg");
     private final ImageView computerPickImageView = new ImageView();
     
     private final Label playerPickLabel = new Label("Player");
@@ -150,8 +149,9 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
     }
     
     //precondition: userPlay is a number between 0 and 4, inclusive
-    //postcondition:
-    //Description:
+    //postcondition: The status of the game is returned in a String called gamePlay
+    //Description: This function determines the result of a round played by
+    //the user and the computer.
     public String play(){
         
         String[] playOptions = new String[5];
@@ -196,16 +196,12 @@ public class JavaFX_game extends Application implements EventHandler<ActionEvent
         gameResultText[10] = "Lizard poisons Spock";
         
     
-        //Splitting the result of the game into array to find the name of the first weapon
-        //The first weapon in an index in the gameResultText is the dominant weapon
-        //So if the winner has selected this item, they win
-        //The winning or losing status of the user is communicated with
-        //the userWinStatus variable.
-        String gamePlay = gameResultText[gameResult[userPlay][computerPlay]];
-//       
+   
+        String gamePlay = gameResultText[gameResult[userPlay][computerPlay]];       
         return gamePlay;
         
     }
+    
     
     @Override
     public void handle(ActionEvent event){
